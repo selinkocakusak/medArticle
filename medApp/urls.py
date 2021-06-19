@@ -13,13 +13,8 @@ urlpatterns = [
     path('article/<int:doc_id>/', views.article, name='article'),
     path('tag/', views.tag, name='tag'),
     path('wikidatasearch/', views.get_wikidata, name='get_wikidata'),
-    # path('save_wikidata/', views.save_wikidata, name='save_wikidata'),
     path('', views.home, name='home'),
     path('user_logout/', views.user_logout, name='user_logout'),
-
-
-
-
 
 
 
