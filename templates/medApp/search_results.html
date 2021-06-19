@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends "medApp/index.html" %}
+{% block body_block %}
+{% csrf_token %}
+<center>
+
+
+
+  {% if term %}
+
+  <div class="container">
+    <h3> Here are the results for {{ term }}</h3>
+
+    {% for article in articles %}
+    <p style="text-align:left;">
+      <a href="/article/{{article.doc_id}}"><b>{{ article.title }}</b></a><br>
+      <b>Authors: </b>{{ article.authors }}<br>
+      <b>Date: </b>{{ article.date }}<br>
+      <br>
+      <b>PMID: </b> {{ article.doc_id }}
+      <b>Keywords: </b>{{ article.keywords }}
+    </p>
+    <hr>
+    {% endfor %}
+    {% endif %}
+
+
+
+  </div>
+
+
+</center>
+{% endblock %}

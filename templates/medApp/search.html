@@ -1,0 +1,33 @@
+{% extends 'medApp/index.html' %}
+{% block body_block %}
+
+
+
+<div class="container">
+
+  <h3>Please add items to search</h3>
+
+  <div class="container2">
+
+    <form class="post" method=POST action="{% url 'medApp:search_results' %}">
+      {% csrf_token %}
+      <label for="term">Term: </label>
+      <input class="term" type="text" name="term" placeholder="Search.." required><br><br>
+      <label for="author">Author: </label>
+      <input class="author" type="text" name="author" placeholder="Search.."><br><br>
+      <label for="year">Year: </label>
+      <input class="year" type="text" name="year" placeholder="Search.."><br><br>
+      <label for="keywords">Keywords: </label>
+      <input class="keywords" type="text" name="keywords" placeholder="Search.."><br><br>
+      <button class="submit" type="submit">Search</button>
+
+
+    </form>
+  </div>
+
+
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "medApp/index.html" %}
+{% block body_block %}
+<center>
+    <div class=container>
+        {% if docid %}
+        {% csrf_token %}
+        <h3>{{docid}}</h3>
+        {% endif %}
+        {% if value %}
+        {% csrf_token %}
+        <h3>{{value}}Please return to <a href="{% url 'medApp:home' %}">Home</a></h3>
+        {% endif %}
+        {% if success %}
+        {% csrf_token %}
+        <h3>{{success}}Please return to <a href="{% url 'medApp:home' %}">Home</a></h3>
+        {% endif %}
+        {% if failure %}
+        {% csrf_token %}
+        <h3>{{failure}} <a href="{% url 'medApp:search' %}">Search</a></h3>
+        {% endif %}
+    </div>
+
+    {% endblock %}
+
+</center>

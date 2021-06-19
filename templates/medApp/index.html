@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="/static/css/mystyle.css?{% now " U" %}" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+  <!-- jQuery !-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+
+
+
+  <header>
+    <li><a class="logo" href="{% url 'medApp:home' %}">MedArticle</a></li>
+    <ul>
+      <li><a class="navbarLink" href="{% url 'admin:index' %}">Admin</a></li>
+      <li><a class="navbarLink" href="{% url 'medApp:register' %}">Register</a></li>
+      <li><a class="navbarLink" href="{% url 'medApp:search' %}">Search</a></li>
+      {# Some logic on what to display for last item#}
+      {% if user.is_authenticated %}
+      <li><a class="navbarLink" href="{% url 'medApp:user_logout' %}">Logout</a></li>
+      {% else %}
+      <li><a class="navbarLink" href="{% url 'medApp:user_login' %}">Login</a></li>
+      {% endif %}
+    </ul>
+
+
+  </header>
+</head>
+
+<body>
+  {% block body_block %}
+  {# Anything outside of this will be inherited if you use extend.#}
+  {% endblock %}
+
+
+
+  <nav class="footer">
+    <footer>
+      <h5>Copyright &copy Selin KOCAKUŞAK</h5>
+    </footer>
+
+
+  </nav>
+
+
+
+</body>
+
+
+
+</html>

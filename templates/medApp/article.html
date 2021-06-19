@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+{% extends "medApp/index.html" %}
+{% block body_block %}
+{% csrf_token %}
+
+<div class=articleContainer>
+  {% if article %}
+  <!-- <h3> Here are the results for {{ term }}</h3> -->
+
+
+  {% for i in article %}
+
+  <h3> {{i.title}} </h3>
+  <p> {{i.authors}} </p>
+  <p><b>PMID: </b>{{i.doc_id}} <b>Date: </b>{{i.date}} </p>
+
+  <h3>Abstract</h3>
+  <p> {{i.abstract}} </p>
+  <p><b>Keywords: </b> {{i.keywords}} </p>
+  <form class="post" action="{% url 'medApp:tag' %}" method=POST>
+    {% csrf_token %}
+    <input type="text" class="idlabel" value={{i.doc_id}} name="idlabel" hidden />
+    <b>Wikidata: </b>
+    {% endfor %}
+    {% for art in docid %}
+    <a href="{{art.link}}">{{ art.tag }}</a>
+    {% endfor %}
+    {% endif %}
+
+    <br>
+
+    <input type="text" placeholder="Please name your tag " name="tag" id="tag">
+    <br> <br>
+    <input id="queryAutoComplete" name="query" type="text" placeholder="Search Wikidata.." required>
+
+    <div id="content">
+
+      <select id="searchResultList" size="5" multiple name="chosen">
+
+        <input type="submit" value="Add Tag">
+
+  </form>
+
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function () {
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 100;  //time in ms
+    var $input = $('#queryAutoComplete');
+
+    //on keyup, start the countdown
+    $input.on('keyup', function () {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    });
+
+    //on keydown, clear the countdown 
+    $input.on('keydown', function () {
+      clearTimeout(typingTimer);
+    });
+
+    //user is finished typing, fetch data
+    function doneTyping() {
+      var request = $.ajax({
+        url: "{% url 'medApp:get_wikidata' %}",
+        type: "GET",
+        data: { query: $input.val() },
+        //contentType: "application/json; charset=utf-8",
+        dataType: "json"
+      });
+
+      request.done(function (msg) {
+        // console.log(msg.descriptions);
+        var html = "";
+        $.each(msg.descriptions, function (index, val) {
+          var str = "<option name=selection>" + val + "</option>";
+          // var str = "<option class=liClass align=left>" + "<a href=javascript: return false;>" + val + "</a>" + "</option>";
+          html += str;
+        });
+        $("#searchResultList").html(html);
+      });
+
+      request.fail(function (jqXHR, textStatus) {
+        // alert("It does not exist in Wikidata " + textStatus);
+      });
+    }
+  });
+</script>
+
+<!-- <script>
+
+    $(function () {
+      $("#query").autocomplete({
+        source: "/search_auto/",
+        select: function (event, ui) { //item selected
+          AutoCompleteSelectHandler(event, ui)
+        },
+        minLength: 2,
+      });
+    });
+
+    function AutoCompleteSelectHandler(event, ui) {
+      var selectedObj = ui.item;
+    }
+
+  </script> -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div id="autocomplete" class="autocomplete">
+    <input class="autocomplete-input" />
+    <ul class="autocomplete-result-list"></ul>
+  </div> -->
+
+
+<!-- <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+  <script>
+
+    new Autocomplete('#autocomplete', {
+      search: input => {
+        console.log(input)
+        // const url = 'medApp/tag'
+        // return new Promise(resolve => {
+        //   // fetch(url)
+        //   // fetch(response => response.json())
+        //   fetch(data => {
+        //     console.log(data)
+        //     // resolve(data.data)
+
+
+        //   })
+
+
+        // })
+
+
+      }
+    })
+
+  </script> -->
+
+
+<!-- 
+
+  <div class="modal-bg" id="modal-bg">
+
+    <div class="modal" id="modal">
+      <button class="closeBtn" id="closeBtn">X</button>
+
+
+      <h3>Add a tag</h3> -->
+
+
+
+
+
+<!-- <form class="post" method=POST action="{% url 'medApp:tag' %}">
+        {% csrf_token %}
+        <input list="auto" id="tag-choice" class="tag-choice" name="tag-choice" size="50" required />
+
+        <datalist id="auto" class="auto" size="50">
+          {% for item in getTitle %} -->
+
+<!-- <option name="tag" class="tag" name="tag" value={{item.labelTitle}} size="50"> -->
+<!-- {% endfor %} -->
+
+<!-- </datalist>
+      </form> -->
+<!-- <br><br> -->
+
+
+
+
+
+
+
+<!-- <button class="modalBtn" id="modalBtn">Submit</button> -->
+
+<!-- <div id="autocomplete" class="autocomplete">
+    <input class="autocomplete-input" />
+    <ul class="autocomplete-result-list"></ul>
+  </div>  -->
+
+
+
+<!-- </div> -->
+
+<!-- 
+  </div> -->
+
+
+
+
+<!-- </script> -->
+<!-- <script type="text/javascript">
+        const open = document.getElementById('openBtn')
+        const modalContainer = document.getElementById('modal-bg')
+        const close = document.getElementById('closeBtn')
+        const modal = document.getElementById('modalBtn')
+        open.addEventListener('click', () => {
+          modalContainer.classList.add('show');
+        });
+        close.addEventListener('click', () => {
+          modalContainer.classList.remove('show');
+        });
+
+
+      </script> -->
+
+
+
+</div>
+
+
+{% endblock %}
