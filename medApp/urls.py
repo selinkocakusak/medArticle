@@ -6,6 +6,7 @@ from . import views
 app_name = 'medApp'
 
 urlpatterns = [
+
     path('search_results/', views.search_results, name='search_results'),
     path('register/', views.register, name='register'),
     path('user_login/', views.user_login, name='user_login'),

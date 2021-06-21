@@ -24,7 +24,7 @@ class content(models.Model):
         return str(self.doc_id)
 
 
-class tagitem(models.Model):
+class tagMdl(models.Model):
     id = models.AutoField(primary_key=True)
     docId = models.CharField(blank=True, max_length=20)
     tag = models.CharField(max_length=30)

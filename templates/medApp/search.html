@@ -2,7 +2,7 @@
 {% block body_block %}
 
 
-
+{% if user.is_authenticated %}
 <div class="container">
 
   <h3>Please add items to search</h3>
@@ -19,12 +19,18 @@
       <input class="year" type="text" name="year" placeholder="Search.."><br><br>
       <label for="keywords">Keywords: </label>
       <input class="keywords" type="text" name="keywords" placeholder="Search.."><br><br>
+      <label for="abstract">Abstract: </label>
+      <input class="abstract" type="text" name="abstract" placeholder="Search.."><br><br>
       <button class="submit" type="submit">Search</button>
 
 
     </form>
   </div>
-
+  {% else %}
+  <div class="containerHome">
+    <p>Log in is required</p>
+  </div>
+  {% endif %}
 
 
 

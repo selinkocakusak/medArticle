@@ -12,7 +12,22 @@
         {% endif %}
         {% if success %}
         {% csrf_token %}
-        <h3>{{success}}Please return to <a href="{% url 'medApp:home' %}">Home</a></h3>
+        <h3>{{success}}</a></h3>
+        <table style="width:100%">
+            <tr>
+                <th>Article</th>
+                <th>Tag</th>
+                <th>Wikidata Link</th>
+            </tr>
+            {% for item in tagDB %}
+            <tr>
+                <td> <a href="/article/{{item.docId}}">Back to Article</a></td>
+                <td>{{item.tag}}</td>
+                <td> <a href="{{item.link}}">Wikidata</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
         {% endif %}
         {% if failure %}
         {% csrf_token %}

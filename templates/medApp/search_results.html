@@ -4,11 +4,8 @@
 {% csrf_token %}
 <center>
 
-
-
-  {% if term %}
-
   <div class="container">
+    {% if articles %}
     <h3> Here are the results for {{ term }}</h3>
 
     {% for article in articles %}
@@ -23,6 +20,10 @@
     <hr>
     {% endfor %}
     {% endif %}
+    {% if not articles %}
+    <h3>The topic you search does not exist in the database</h3>
+    {% endif %}
+
 
 
 

@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import UserInfo, content, tagitem
+from .models import UserInfo, content, tagMdl
 
 # Register your models here.
 admin.site.register(UserInfo)
 
-admin.site.register(tagitem)
+admin.site.register(tagMdl)
 
 
 class contents(admin.ModelAdmin):

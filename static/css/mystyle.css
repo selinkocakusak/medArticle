@@ -10,6 +10,8 @@
     display: flex;
    
   }
+
+  
   header{
     font-family: 'Montserrat',sans-serif;
     position: fixed;
@@ -24,7 +26,14 @@
     box-shadow: 1px 3px #CCD1D1;
   
   }
-  
+  h4{
+    font-family: 'Montserrat',sans-serif;
+    margin-left: 10px;
+    color: grey;
+
+  }
+
+
   h5{
     margin-left: 10px;
     color: darkslategrey;
@@ -59,16 +68,39 @@
   
   
   }
+
+  table {
+    border-collapse: collapse;
+  }
   
+  td, th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+
+  .containerHome{
+    margin-top:100px;
+    border:lightgrey;
+    border-style: outset;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+ 
+
+
+  }
+
+
   .container{
     
     margin-top:30px;
     padding: 100px;
   
   }
-  /* a:link {
-    text-decoration: none;
-  } */
+  
   a:visited { 
     text-decoration: none; 
    }
@@ -84,14 +116,11 @@
     height: 55px;
     background: linear-gradient(to bottom, #e0e0e0 46%, #f0f0f0 80%);
     display: flex;
-   
-   
-  
   }
-  .closeBtn,
-  .openBtn,
+  .loginBtn,
+  .regBtn,
   .submit,
-  .modalBtn{
+  .tag-btn{
     font-family: 'Montserrat',sans-serif;
     background: linear-gradient(to bottom, #003399 0%, #0066cc 102%);
     height: 30px;
@@ -101,46 +130,15 @@
   
   }
 
-  .closeBtn{
-   right: 0;
+  .wikiTag{
+    background-color: rgb(150, 166, 182);
+    border: 3px solid lightgray;
+    border-radius: 7px;
+    color: white;
+    text-decoration: none; 
+    padding: 7px;
 
 
-  }
-  
-  .modal-bg{
-    position: fixed;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-    opacity: 0; 
-    transition: visibility 0s opacity 0,5s;
-  
-  }
-  .modal-bg.show{
-    pointer-events: auto;
-    opacity: 1;
-  }
-  
-  
-  .modal{
-    font-family: 'Montserrat',sans-serif;
-    background-color: white;
-    width: 30%;
-    height: 30%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-  
-  
-  
-  
   }
   
   ul {
@@ -176,8 +174,5 @@
   }
   
   
-  /* .navbar{
-    background-color: blue;
-  
-  } */
+
   
