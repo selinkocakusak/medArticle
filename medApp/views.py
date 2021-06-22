@@ -5,11 +5,10 @@ from .forms import UserForm
 from .models import content, tagMdl
 from django.urls import reverse
 import requests
-from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import get_user_model
+
 
 from django.contrib.auth.decorators import login_required
 
@@ -30,19 +29,11 @@ def search_results(request):
             title__icontains=term, authors__icontains=author, date__icontains=year, keywords__icontains=keyword, abstract__icontains=abstrt).values(
                 'title', 'authors', 'date', 'keywords', 'doc_id', 'no').order_by('no')
 
-        # paginator = Paginator(context, 10)
-        # page_num = request.GET.get('page', 10)
-        # context = paginator(page_num)
-        # page = paginator.get_page(page_num)
         items = {
-            # 'count': paginator.count,
             'term': term,
-            'articles': articles
+            'articles': articles,
         }
-        # page_num = request.POST.get('page', 10)
-        # context = paginator(page_num)
         return render(request, 'medApp/search_results.html', items)
-        # return render(request, 'medApp/search_results.html', {'term': term, 'context': context})
     else:
         return render(request, 'medApp/search_results.html', {})
 

@@ -1,6 +1,7 @@
 {% extends 'medApp/index.html' %}
 {% block body_block %}
 <div class="container">
+  {% csrf_token %}
   <div class="jumbotron">
     <h1>Please Login</h1>
 
