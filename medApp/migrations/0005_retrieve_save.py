@@ -14,8 +14,8 @@ class Migration(migrations.Migration):
     ]
 
     def insert_default_articles(apps, schema_editor):
-        Entrez.api_key = "eb592b2a5c1cd1e4a553429be0e9a833fe08"
-        Entrez.email = "selinkocakusak@gmail.com"
+        Entrez.api_key = "--"
+        Entrez.email = ""
         start = 0
         count = apps.get_model('medApp', 'content').objects.all().count()
         while count < 50000:
